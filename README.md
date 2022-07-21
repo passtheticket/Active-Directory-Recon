@@ -8,8 +8,9 @@ After the "runas" command, you must check to access SYSVOL and NETLOGON folders 
 net view \\unsafe.local\
 ```
 You must see the SYSVOL and NETLOGON folders if you supply a valid password for the "runas" command.\
-
-
+\
+\
+\
 **Information for the following examples:**
 ```text
 Domain DNS name: unsafe.local

@@ -11,9 +11,8 @@ After the "runas" command, you must check to access SYSVOL and NETLOGON folders 
 ```powershell
 net view \\unsafe.local\
 ```
-You must see the SYSVOL and NETLOGON folders if you supply a valid password for the "runas" command.\
-\
-\
+You must see the SYSVOL and NETLOGON folders if you supply a valid password for the "runas" command.
+
 ```text
 Information for the following examples:
 Domain DNS name: unsafe.local

@@ -90,15 +90,15 @@ C:\> runas /netonly /user:UNSAFE\ruser powershell.exe
 ```
 
 - **Pingcastle**
-```text
-#1. Download Pingcastle and unzip the archive
-#2. Spawn a CMD shell as a user in that domain using runas and its /netonly flag and enter the password.
-C:\> runas /netonly /user:UNSAFE\ruser cmd.exe
-#3. Generate a HTML healthcheck report for domain:
-C:\> .\PingCastle.exe --log --healthcheck --server unsafe.local
-#4. To scan for the Zerologon vulnerability:
-C:\> .\PingCastle.exe --log --scanner zerologon --server unsafe.local
-```
+
+1. Download Pingcastle and unzip the archive
+2. Spawn a CMD shell as a user in that domain using runas and its /netonly flag and enter the password.
+`C:\> runas /netonly /user:UNSAFE\ruser cmd.exe`
+3. Generate a HTML healthcheck report for domain:
+`C:\> .\PingCastle.exe --log --healthcheck --server unsafe.local`
+4. To scan for the Zerologon vulnerability:
+`C:\> .\PingCastle.exe --log --scanner zerologon --server unsafe.local`
+
 
 - **.Net SDS.AD namespace**
 ```powershell
@@ -107,26 +107,26 @@ runas /netonly /user:UNSAFE\ruser powershell.exe
 
 
 #Get the forest information:
-PS C:\> [System.DirectoryServices.ActiveDirectory.Forest]::GetCurrentForest()
+ [System.DirectoryServices.ActiveDirectory.Forest]::GetCurrentForest()
 
 #Get the current user's domain information:
-PS C:\> [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()
+ [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()
 
 #Get information of DCs:
-PS C:\> [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain().DomainControllers
+ [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain().DomainControllers
 
 #Find Primary DC:
-PS C:\> [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain().pdcroleowner
+ [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain().pdcroleowner
 
 #Get trusts for current domain:
-PS C:\> ([System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()).GetAllTrustRelationships()
+ ([System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()).GetAllTrustRelationships()
 
 #Get a list of sites in the forest:
-PS C:\> [System.DirectoryServices.ActiveDirectory.Forest]::GetCurrentForest().sites
+ [System.DirectoryServices.ActiveDirectory.Forest]::GetCurrentForest().sites
 
 #Determine the SID filtering status of a trust. If the output is "true", SID filtering is enabled.
-PS C:\> $domain="gotham.unsafe.local"
-PS C:\> ([System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()).GetSidFilteringStatus($domain)
+ $domain="gotham.unsafe.local"
+ ([System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()).GetSidFilteringStatus($domain)
 ```
 
 ### Reference

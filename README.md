@@ -57,11 +57,12 @@ Get-NetDomain
 
 - **RSAT**
 ```powershell
-1. Download and install RSAT
-2. Run cmd.exe as Administrator
-3. Spawn a MMC as a user in that domain using runas and its /netonly flag and enter the password.
+#1. Download and install RSAT
+#2. Run cmd.exe as Administrator
+#3. Spawn a MMC as a user in that domain using runas and its /netonly flag and enter the password.
 C:\> runas /netonly /user:UNSAFE\ruser "mmc /server=unsafe.local"
-4. File > Open > File name: C:\Windows\System32 > dsa (for example) > click
+
+#4. File > Open > File name: C:\Windows\System32 > dsa (for example) > click
 ```
 
 - **PurpleKnight**
@@ -69,10 +70,13 @@ C:\> runas /netonly /user:UNSAFE\ruser "mmc /server=unsafe.local"
 #1. Download PurpleKnight and unzip the archive
 #2. Spawn a CMD shell as a user in that domain using runas and its /netonly flag and enter the password.
 C:\> runas /netonly /user:UNSAFE\ruser cmd.exe
+
 #3. Set Execution policy as Bypass
 C:\> powershell -c "Set-ExecutionPolicy Bypass -Scope CurrentUser"
+
 #4. Run the executable from CMD
 C:\> .\PurpleKnight.exe
+
 #5. It will be opened and not detect a forest as expected. Type the domain name (e.g: unsafe.local) and click select > next > 'run tests'.
 ```
 
@@ -94,8 +98,10 @@ C:\> runas /netonly /user:UNSAFE\ruser powershell.exe
 #1. Download Pingcastle and unzip the archive
 #2. Spawn a CMD shell as a user in that domain using runas and its /netonly flag and enter the password.
 C:\> runas /netonly /user:UNSAFE\ruser cmd.exe
+
 #3. Generate a HTML healthcheck report for domain:
 C:\> .\PingCastle.exe --log --healthcheck --server unsafe.local
+
 #4. To scan for the Zerologon vulnerability:
 C:\> .\PingCastle.exe --log --scanner zerologon --server unsafe.local
 ```

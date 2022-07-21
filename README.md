@@ -112,26 +112,26 @@ C:\> .\PingCastle.exe --log --scanner zerologon --server unsafe.local
 runas /netonly /user:UNSAFE\ruser powershell.exe
 
 #Get the forest information:
- [System.DirectoryServices.ActiveDirectory.Forest]::GetCurrentForest()
+[System.DirectoryServices.ActiveDirectory.Forest]::GetCurrentForest()
 
 #Get the current user's domain information:
- [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()
+[System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()
 
 #Get information of DCs:
- [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain().DomainControllers
+[System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain().DomainControllers
 
 #Find Primary DC:
- [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain().pdcroleowner
+[System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain().pdcroleowner
 
 #Get trusts for current domain:
- ([System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()).GetAllTrustRelationships()
+([System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()).GetAllTrustRelationships()
 
 #Get a list of sites in the forest:
- [System.DirectoryServices.ActiveDirectory.Forest]::GetCurrentForest().sites
+[System.DirectoryServices.ActiveDirectory.Forest]::GetCurrentForest().sites
 
 #Determine the SID filtering status of a trust. If the output is "true", SID filtering is enabled.
- $domain="gotham.unsafe.local"
- ([System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()).GetSidFilteringStatus($domain)
+$domain="gotham.unsafe.local"
+([System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()).GetSidFilteringStatus($domain)
 ```
 
 ### Reference

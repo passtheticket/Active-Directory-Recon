@@ -1,7 +1,7 @@
 ## Active Directory Recon
 
 ### Recon from non-Domain-Joined Windows Computer
-Note:
+**Note:**
 Configure your system DNS server to be the IP address of a domain controller in the target domain firstly. 
 After the "runas" command, you must check to access SYSVOL and NETLOGON folders with the following command: 
 ```powershell
@@ -28,7 +28,6 @@ C:\> nslookup
 - **SharpHound**
 ```powershell
 #Method 1
-
 #1. Spawn a CMD shell as a user in that domain using runas and its /netonly flag and enter the password.
 C:\> runas /netonly /user:UNSAFE\ruser cmd.exe
 

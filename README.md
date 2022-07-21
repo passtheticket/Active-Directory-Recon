@@ -3,7 +3,7 @@
 ### Recon from non-Domain-Joined Windows Computer
 **Note:**
 Configure your system DNS server to be the IP address of a domain controller in the target domain firstly.\
-So that you can resolve the target domain\
+So that you can resolve the target domain
 ```powershell
 ping unsafe.local
 ```

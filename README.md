@@ -13,14 +13,7 @@ net view \\unsafe.local\
 ```
 You must see the SYSVOL and NETLOGON folders if you supply a valid password for the "runas" command.
 
-```text
-Information for the following examples:
-Domain DNS name: unsafe.local
-Domain NetBIOS name: UNSAFE
-Domain username: ruser
-Child domain DNS name: gotham.unsafe.local
-Child domain NetBIOS name: GOTHAM
-```
+
 
 - **Nslookup (for finding DCs)**
 ```powershell

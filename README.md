@@ -4,8 +4,8 @@
 Note:
 Configure your system DNS server to be the IP address of a domain controller in the target domain firstly. 
 After the "runas" command, you must check to access SYSVOL and NETLOGON folders with the following command: 
-```text
-C:\> net view \\unsafe.local\
+```powershell
+net view \\unsafe.local\
 ```
 You must see the SYSVOL and NETLOGON folders if you supply a valid password for the "runas" command.
 Information for the following examples:
@@ -18,7 +18,7 @@ Child domain NetBIOS name: GOTHAM
 ```
 
 - **Nslookup (for finding DCs)**
-```text
+```powershell
 #Open cmd
 C:\> nslookup
    > set type=SRV
@@ -26,7 +26,7 @@ C:\> nslookup
 ```
 
 - **SharpHound**
-```text
+```powershell
 #Method 1
 
 #1. Spawn a CMD shell as a user in that domain using runas and its /netonly flag and enter the password.
@@ -56,7 +56,7 @@ Get-NetDomain
 ```
 
 - **RSAT**
-```text
+```powershell
 1. Download and install RSAT
 2. Run cmd.exe as Administrator
 3. Spawn a MMC as a user in that domain using runas and its /netonly flag and enter the password.
@@ -65,7 +65,7 @@ C:\> runas /netonly /user:UNSAFE\ruser "mmc /server=unsafe.local"
 ```
 
 - **PurpleKnight**
-```text
+```powershell
 #1. Download PurpleKnight and unzip the archive
 #2. Spawn a CMD shell as a user in that domain using runas and its /netonly flag and enter the password.
 C:\> runas /netonly /user:UNSAFE\ruser cmd.exe
@@ -90,21 +90,20 @@ C:\> runas /netonly /user:UNSAFE\ruser powershell.exe
 ```
 
 - **Pingcastle**
-
-1. Download Pingcastle and unzip the archive
-2. Spawn a CMD shell as a user in that domain using runas and its /netonly flag and enter the password.
-`C:\> runas /netonly /user:UNSAFE\ruser cmd.exe`
-3. Generate a HTML healthcheck report for domain:
-`C:\> .\PingCastle.exe --log --healthcheck --server unsafe.local`
-4. To scan for the Zerologon vulnerability:
-`C:\> .\PingCastle.exe --log --scanner zerologon --server unsafe.local`
-
+```powershell
+#1. Download Pingcastle and unzip the archive
+#2. Spawn a CMD shell as a user in that domain using runas and its /netonly flag and enter the password.
+C:\> runas /netonly /user:UNSAFE\ruser cmd.exe
+#3. Generate a HTML healthcheck report for domain:
+C:\> .\PingCastle.exe --log --healthcheck --server unsafe.local
+#4. To scan for the Zerologon vulnerability:
+C:\> .\PingCastle.exe --log --scanner zerologon --server unsafe.local
+```
 
 - **.Net SDS.AD namespace**
 ```powershell
 #1. Spawn a Powershell as a user in that domain using runas and its /netonly flag and enter the password.
 runas /netonly /user:UNSAFE\ruser powershell.exe
-
 
 #Get the forest information:
  [System.DirectoryServices.ActiveDirectory.Forest]::GetCurrentForest()

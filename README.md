@@ -4,7 +4,7 @@
 Note:
 Configure your system DNS server to be the IP address of a domain controller in the target domain firstly. 
 After the "runas" command, you must check to access SYSVOL and NETLOGON folders with the following command: 
-````cmd
+```cmd
 C:\> net view \\unsafe.local\
 ```
 You must see the SYSVOL and NETLOGON folders if you supply a valid password for the "runas" command.

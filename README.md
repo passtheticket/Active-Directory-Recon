@@ -5,17 +5,18 @@ Note:
 Configure your system DNS server to be the IP address of a domain controller in the target domain firstly. 
 After the "runas" command, you must check to access SYSVOL and NETLOGON folders with the following command: 
 ````cmd
-net view \\unsafe.local\
+C:\> net view \\unsafe.local\
 ```
 You must see the SYSVOL and NETLOGON folders if you supply a valid password for the "runas" command.
 
+```text
 Information for the following examples:
 Domain DNS name: unsafe.local
 Domain NetBIOS name: UNSAFE
 Domain username: ruser
 Child domain DNS name: gotham.unsafe.local
 Child domain NetBIOS name: GOTHAM
-
+```
 
 - **Nslookup (for finding DCs)**
 ```cmd
@@ -43,7 +44,7 @@ C:\> SharpHound.exe -d unsafe.local -c All --ldapusername ruser --ldappassword P
 - **PowerView**
 ```powershell
 #1. Spawn a Powershell as a user in that domain using runas and its /netonly flag and enter the password.
-runas /netonly /user:UNSAFE\ruser powershell.exe
+C:\> runas /netonly /user:UNSAFE\ruser powershell.exe
 
 #2. Set Execution policy as Bypass
 PS C:\Windows\system32> Set-ExecutionPolicy Bypass -Scope CurrentUser
@@ -79,7 +80,7 @@ C:\> .\PurpleKnight.exe
 - **ADACLScanner (unstable)**
 ```powershell
 #1. Spawn a Powershell as a user in that domain using runas and its /netonly flag and enter the password.
-runas /netonly /user:UNSAFE\ruser powershell.exe
+C:\> runas /netonly /user:UNSAFE\ruser powershell.exe
 
 #2. Set Execution policy as Bypass
 PS C:\Windows\system32> Set-ExecutionPolicy Bypass -Scope CurrentUser

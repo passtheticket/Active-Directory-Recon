@@ -133,5 +133,5 @@ $domain="gotham.unsafe.local"
 ([System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()).GetSidFilteringStatus($domain)
 ```
 
-### Reference
+#### Reference
 https://bloodhound.readthedocs.io/en/latest/data-collection/sharphound.html

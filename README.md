@@ -50,7 +50,7 @@ Set-ExecutionPolicy Bypass -Scope CurrentUser
 #3. Import Module
 Import-Module C:\Users\desktop2\Desktop\AD-Tools\Tools\PowerView_dev.ps1
 
-#4. Running cmdlet
+#4. Running a cmdlet
 Get-NetDomain
 ```
 

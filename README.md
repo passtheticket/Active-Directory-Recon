@@ -10,8 +10,7 @@ net view \\unsafe.local\
 You must see the SYSVOL and NETLOGON folders if you supply a valid password for the "runas" command.\
 \
 \
-\
-**Information for the following examples:**
+Information for the following examples:
 ```text
 Domain DNS name: unsafe.local
 Domain NetBIOS name: UNSAFE

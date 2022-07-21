@@ -13,7 +13,7 @@ net view \\unsafe.local\
 ```
 You must see the SYSVOL and NETLOGON folders if you supply a valid password for the "runas" command.
 
-
+<br/>
 
 - **Nslookup (for finding DCs)**
 ```powershell

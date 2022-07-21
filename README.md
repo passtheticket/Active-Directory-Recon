@@ -4,13 +4,12 @@
 Note:
 Configure your system DNS server to be the IP address of a domain controller in the target domain firstly. 
 After the "runas" command, you must check to access SYSVOL and NETLOGON folders with the following command: 
-```cmd
+```text
 C:\> net view \\unsafe.local\
 ```
 You must see the SYSVOL and NETLOGON folders if you supply a valid password for the "runas" command.
-
-```text
 Information for the following examples:
+```text
 Domain DNS name: unsafe.local
 Domain NetBIOS name: UNSAFE
 Domain username: ruser
@@ -19,7 +18,7 @@ Child domain NetBIOS name: GOTHAM
 ```
 
 - **Nslookup (for finding DCs)**
-```cmd
+```text
 #Open cmd
 C:\> nslookup
    > set type=SRV
@@ -27,7 +26,7 @@ C:\> nslookup
 ```
 
 - **SharpHound**
-```cmd
+```text
 #Method 1
 
 #1. Spawn a CMD shell as a user in that domain using runas and its /netonly flag and enter the password.
@@ -47,13 +46,13 @@ C:\> SharpHound.exe -d unsafe.local -c All --ldapusername ruser --ldappassword P
 C:\> runas /netonly /user:UNSAFE\ruser powershell.exe
 
 #2. Set Execution policy as Bypass
-PS C:\Windows\system32> Set-ExecutionPolicy Bypass -Scope CurrentUser
+Set-ExecutionPolicy Bypass -Scope CurrentUser
 
 #3. Import Module
-PS C:\Windows\system32> Import-Module C:\Users\desktop2\Desktop\AD-Tools\Tools\PowerView_dev.ps1
+Import-Module C:\Users\desktop2\Desktop\AD-Tools\Tools\PowerView_dev.ps1
 
 #4. Running cmdlet
-PS C:\Windows\system32> Get-NetDomain
+Get-NetDomain
 ```
 
 - **RSAT**
@@ -66,7 +65,7 @@ C:\> runas /netonly /user:UNSAFE\ruser "mmc /server=unsafe.local"
 ```
 
 - **PurpleKnight**
-```cmd
+```text
 #1. Download PurpleKnight and unzip the archive
 #2. Spawn a CMD shell as a user in that domain using runas and its /netonly flag and enter the password.
 C:\> runas /netonly /user:UNSAFE\ruser cmd.exe
@@ -83,15 +82,15 @@ C:\> .\PurpleKnight.exe
 C:\> runas /netonly /user:UNSAFE\ruser powershell.exe
 
 #2. Set Execution policy as Bypass
-PS C:\Windows\system32> Set-ExecutionPolicy Bypass -Scope CurrentUser
+ Set-ExecutionPolicy Bypass -Scope CurrentUser
 
 #3. Generate a report from the command line:
-PS C:\> .\ADACLScan.ps1 -Base "DC=unsafe,DC=local" -Scope subtree -Server dc.unsafe.local -Port 389 -Output HTML -Show
-PS C:\> .\ADACLScan.ps1 -Base "DC=unsafe,DC=local" -Scope subtree -Server dc.unsafe.local -Port 389 -EffectiveRightsPrincipal ruser -Output HTML -Show
+ .\ADACLScan.ps1 -Base "DC=unsafe,DC=local" -Scope subtree -Server dc.unsafe.local -Port 389 -Output HTML -Show
+ .\ADACLScan.ps1 -Base "DC=unsafe,DC=local" -Scope subtree -Server dc.unsafe.local -Port 389 -EffectiveRightsPrincipal ruser -Output HTML -Show
 ```
 
 - **Pingcastle**
-```cmd
+```text
 #1. Download Pingcastle and unzip the archive
 #2. Spawn a CMD shell as a user in that domain using runas and its /netonly flag and enter the password.
 C:\> runas /netonly /user:UNSAFE\ruser cmd.exe

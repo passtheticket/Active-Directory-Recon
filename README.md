@@ -1,6 +1,6 @@
 ## Active Directory Recon
 
-## Recon from non-Domain-Joined Windows Computer
+## Enumeration from a non-domain joined Windows computer
 **Note:**\
 Login as an administrator user and configure your system DNS server to be the IP address of a domain controller in the target domain firstly.\
 So that you can resolve the target domain.
@@ -136,4 +136,5 @@ $domain="gotham.unsafe.local"
 ```
 
 #### Reference
-https://bloodhound.readthedocs.io/en/latest/data-collection/sharphound.html
+https://bloodhound.readthedocs.io/en/latest/data-collection/sharphound.html \
+https://bitvijays.github.io/LFF-IPS-P3-Exploitation.html

@@ -1,9 +1,9 @@
 ## Active Directory Recon
 
 ## Recon from non-Domain-Joined Windows Computer
-**Note:**
-Configure your system DNS server to be the IP address of a domain controller in the target domain firstly.\
-So that you can resolve the target domain
+**Note:**\
+Login as an administrator user and configure your system DNS server to be the IP address of a domain controller in the target domain firstly.\
+So that you can resolve the target domain.
 ```powershell
 ping unsafe.local
 ```
@@ -103,7 +103,7 @@ C:\> .\PingCastle.exe --log --healthcheck --server unsafe.local
 C:\> .\PingCastle.exe --log --scanner zerologon --server unsafe.local
 ```
 
-- **.Net SDS.AD namespace**
+- **.Net System.DirectoryServices.ActiveDirectory namespace**
 ```powershell
 #1. Spawn a Powershell as a user in that domain using runas and its /netonly flag and enter the password.
 runas /netonly /user:UNSAFE\ruser powershell.exe
@@ -119,6 +119,10 @@ runas /netonly /user:UNSAFE\ruser powershell.exe
 
 #Find Primary DC:
 [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain().pdcroleowner
+
+#Get trusts for forest:
+$forest = "unsafe.local"
+([System.DirectoryServices.ActiveDirectory.Forest]::GetForest((New-Object System.DirectoryServices.ActiveDirectory.DirectoryContext('Forest', $forest)))).GetAllTrustRelationships()
 
 #Get trusts for current domain:
 ([System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()).GetAllTrustRelationships()

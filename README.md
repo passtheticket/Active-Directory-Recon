@@ -32,9 +32,13 @@ C:\> runas /netonly /user:UNSAFE\ruser cmd.exe
 #2. Run SharpHound, using the -d flag to specify the AD domain you want to collect information from. You can also use any other flags you wish.
 C:\> SharpHound.exe -d unsafe.local -c All --outputdirectory C:\Users\desktop2\Desktop
 
+#3. For session loop collection method (default 2 hours)
+C:\> SharpHound.exe -d unsafe.local --CollectionMethods Session --Loop
+C:\> SharpHound.exe -d unsafe.local --CollectionMethods Session --Loop --Loopduration 01:00:00
 
 #Method 2
 C:\> SharpHound.exe -d unsafe.local -c All --ldapusername ruser --ldappassword Password
+C:\> SharpHound.exe -d unsafe.local --CollectionMethods Session --Loop --ldapusername ruser --ldappassword Password
 ```
 
 - **PowerView**

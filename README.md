@@ -1,13 +1,12 @@
 ## Active Directory Recon
-
 ## Enumeration from a non-domain joined Windows computer
-**Note:**\
+#### Note:
 Login as an administrator user and configure your system DNS server to be the IP address of a domain controller in the target domain firstly.\
 So that you can resolve the target domain.
 ```powershell
 ping unsafe.local
 ```
-After the "runas" command, you must check to access SYSVOL and NETLOGON folders with the following command: 
+After the below "runas" commands, you must check to access SYSVOL and NETLOGON folders with the following command: 
 ```powershell
 net view \\unsafe.local\
 ```
@@ -15,15 +14,19 @@ You must see the SYSVOL and NETLOGON folders if you supply a valid password for 
 
 <br/>
 
-- **Nslookup (for finding DCs)**
+**Nslookup**
 ```powershell
-#Open cmd
+#For finding DCs
 C:\> nslookup
    > set type=SRV
-   > _ldap._tcp.dc._msdcs.unsafe.local 
+   > _ldap._tcp.dc._msdcs.unsafe.local
+   
+#To find all of the available records
+C:\> nslookup -type=any unsafe.local
 ```
+<br/>
 
-- **SharpHound**
+**SharpHound**
 ```powershell
 #Method 1
 #1. Spawn a CMD shell as a user in that domain using runas and its /netonly flag and enter the password.
@@ -40,8 +43,9 @@ C:\> SharpHound.exe -d unsafe.local --CollectionMethods Session --Loop --Loopdur
 C:\> SharpHound.exe -d unsafe.local -c All --ldapusername ruser --ldappassword Password
 C:\> SharpHound.exe -d unsafe.local --CollectionMethods Session --Loop --ldapusername ruser --ldappassword Password
 ```
+<br/>
 
-- **PowerView**
+**PowerView**
 ```powershell
 #1. Spawn a Powershell as a user in that domain using runas and its /netonly flag and enter the password.
 C:\> runas /netonly /user:UNSAFE\ruser powershell.exe
@@ -55,8 +59,9 @@ Import-Module C:\Users\desktop2\Desktop\AD-Tools\Tools\PowerView_dev.ps1
 #4. Running a cmdlet
 Get-NetDomain
 ```
+<br/>
 
-- **RSAT**
+**RSAT**
 ```powershell
 #1. Download and install RSAT
 #2. Run cmd.exe as Administrator
@@ -65,8 +70,9 @@ C:\> runas /netonly /user:UNSAFE\ruser "mmc /server=unsafe.local"
 
 #4. File > Open > File name: C:\Windows\System32 > dsa (for example) > click
 ```
+<br/>
 
-- **PurpleKnight**
+**PurpleKnight**
 ```powershell
 #1. Download PurpleKnight and unzip the archive
 #2. Spawn a CMD shell as a user in that domain using runas and its /netonly flag and enter the password.
@@ -80,8 +86,9 @@ C:\> .\PurpleKnight.exe
 
 #5. It will be opened and not detect a forest as expected. Type the domain name (e.g: unsafe.local) and click select > next > 'run tests'.
 ```
+<br/>
 
-- **ADACLScanner (unstable)**
+**ADACLScanner (unstable)**
 ```powershell
 #1. Spawn a Powershell as a user in that domain using runas and its /netonly flag and enter the password.
 C:\> runas /netonly /user:UNSAFE\ruser powershell.exe
@@ -93,8 +100,9 @@ C:\> runas /netonly /user:UNSAFE\ruser powershell.exe
  .\ADACLScan.ps1 -Base "DC=unsafe,DC=local" -Scope subtree -Server dc.unsafe.local -Port 389 -Output HTML -Show
  .\ADACLScan.ps1 -Base "DC=unsafe,DC=local" -Scope subtree -Server dc.unsafe.local -Port 389 -EffectiveRightsPrincipal ruser -Output HTML -Show
 ```
+<br/>
 
-- **Pingcastle**
+**Pingcastle**
 ```powershell
 #1. Download Pingcastle and unzip the archive
 #2. Spawn a CMD shell as a user in that domain using runas and its /netonly flag and enter the password.
@@ -106,8 +114,9 @@ C:\> .\PingCastle.exe --log --healthcheck --server unsafe.local
 #4. To scan for the Zerologon vulnerability:
 C:\> .\PingCastle.exe --log --scanner zerologon --server unsafe.local
 ```
+<br/>
 
-- **.Net System.DirectoryServices.ActiveDirectory namespace**
+**.Net System.DirectoryServices.ActiveDirectory namespace**
 ```powershell
 #1. Spawn a Powershell as a user in that domain using runas and its /netonly flag and enter the password.
 runas /netonly /user:UNSAFE\ruser powershell.exe

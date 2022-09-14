@@ -7,7 +7,7 @@ So that you can resolve the target domain.
 ```powershell
 ping unsafe.local
 ```
-After the below "runas" commands, you must check to access SYSVOL and NETLOGON folders with the following command: 
+After the below `runas` commands, you must check to access SYSVOL and NETLOGON folders with the following command: 
 ```powershell
 net view \\unsafe.local\
 ```

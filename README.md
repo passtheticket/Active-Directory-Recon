@@ -27,6 +27,17 @@ C:\> nslookup -type=any unsafe.local
 ```
 <br/>
 
+**Gpresult**
+```powershell
+#Displays verbose policy information for remote computer
+gpresult /v /s target-IP /u username /p password /scope computer
+gpresult /z /s target-IP /u username /p password /scope computer
+
+#Displays RSoP summary data for remote computer
+gpresult /r /s target-IP /u username /p password /scope computer
+```
+<br/>
+
 **SharpHound**
 ```powershell
 #Method 1

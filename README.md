@@ -38,22 +38,14 @@ gpresult /r /s target-IP /u username /p password /scope computer
 ```
 <br/>
 
-**SharpHound**
+**RSAT**
 ```powershell
-#Method 1
-#1. Spawn a CMD shell as a user in that domain using runas and its /netonly flag and enter the password.
-C:\> runas /netonly /user:UNSAFE\ruser cmd.exe
+#1. Download and install RSAT
+#2. Run cmd.exe as Administrator
+#3. Spawn a MMC as a user in that domain using runas and its /netonly flag and enter the password.
+C:\> runas /netonly /user:UNSAFE\ruser "mmc /server=unsafe.local"
 
-#2. Run SharpHound, using the -d flag to specify the AD domain you want to collect information from. You can also use any other flags you wish.
-C:\> SharpHound.exe -d unsafe.local -c All --outputdirectory C:\Users\desktop2\Desktop
-
-#3. For session loop collection method (default 2 hours)
-C:\> SharpHound.exe -d unsafe.local --CollectionMethods Session --Loop
-C:\> SharpHound.exe -d unsafe.local --CollectionMethods Session --Loop --Loopduration 01:00:00
-
-#Method 2
-C:\> SharpHound.exe -d unsafe.local -c All --ldapusername ruser --ldappassword Password
-C:\> SharpHound.exe -d unsafe.local --CollectionMethods Session --Loop --ldapusername ruser --ldappassword Password
+#4. File > Open > File name: C:\Windows\System32 > dsa (for example) > click
 ```
 <br/>
 
@@ -73,14 +65,36 @@ Get-NetDomain
 ```
 <br/>
 
-**RSAT**
+**ADACLScanner (unstable)**
 ```powershell
-#1. Download and install RSAT
-#2. Run cmd.exe as Administrator
-#3. Spawn a MMC as a user in that domain using runas and its /netonly flag and enter the password.
-C:\> runas /netonly /user:UNSAFE\ruser "mmc /server=unsafe.local"
+#1. Spawn a Powershell as a user in that domain using runas and its /netonly flag and enter the password.
+C:\> runas /netonly /user:UNSAFE\ruser powershell.exe
 
-#4. File > Open > File name: C:\Windows\System32 > dsa (for example) > click
+#2. Set Execution policy as Bypass
+ Set-ExecutionPolicy Bypass -Scope CurrentUser
+
+#3. Generate a report from the command line:
+ .\ADACLScan.ps1 -Base "DC=unsafe,DC=local" -Scope subtree -Server dc.unsafe.local -Port 389 -Output HTML -Show
+ .\ADACLScan.ps1 -Base "DC=unsafe,DC=local" -Scope subtree -Server dc.unsafe.local -Port 389 -EffectiveRightsPrincipal ruser -Output HTML -Show
+```
+<br/>
+
+**SharpHound**
+```powershell
+#Method 1
+#1. Spawn a CMD shell as a user in that domain using runas and its /netonly flag and enter the password.
+C:\> runas /netonly /user:UNSAFE\ruser cmd.exe
+
+#2. Run SharpHound, using the -d flag to specify the AD domain you want to collect information from. You can also use any other flags you wish.
+C:\> SharpHound.exe -d unsafe.local -c All --outputdirectory C:\Users\desktop2\Desktop
+
+#3. For session loop collection method (default 2 hours)
+C:\> SharpHound.exe -d unsafe.local --CollectionMethods Session --Loop
+C:\> SharpHound.exe -d unsafe.local --CollectionMethods Session --Loop --Loopduration 01:00:00
+
+#Method 2
+C:\> SharpHound.exe -d unsafe.local -c All --ldapusername ruser --ldappassword Password
+C:\> SharpHound.exe -d unsafe.local --CollectionMethods Session --Loop --ldapusername ruser --ldappassword Password
 ```
 <br/>
 
@@ -97,20 +111,6 @@ C:\> powershell -c "Set-ExecutionPolicy Bypass -Scope CurrentUser"
 C:\> .\PurpleKnight.exe
 
 #5. It will be opened and not detect a forest as expected. Type the domain name (e.g: unsafe.local) and click select > next > 'run tests'.
-```
-<br/>
-
-**ADACLScanner (unstable)**
-```powershell
-#1. Spawn a Powershell as a user in that domain using runas and its /netonly flag and enter the password.
-C:\> runas /netonly /user:UNSAFE\ruser powershell.exe
-
-#2. Set Execution policy as Bypass
- Set-ExecutionPolicy Bypass -Scope CurrentUser
-
-#3. Generate a report from the command line:
- .\ADACLScan.ps1 -Base "DC=unsafe,DC=local" -Scope subtree -Server dc.unsafe.local -Port 389 -Output HTML -Show
- .\ADACLScan.ps1 -Base "DC=unsafe,DC=local" -Scope subtree -Server dc.unsafe.local -Port 389 -EffectiveRightsPrincipal ruser -Output HTML -Show
 ```
 <br/>
 

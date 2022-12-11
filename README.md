@@ -6,6 +6,7 @@ Login as a local admin user and configure your system DNS server to be the IP ad
 So that you can resolve the target domain.
 ```powershell
 ping unsafe.local
+nslookup unsafe.local
 ```
 After the below `runas` commands, you must check to access SYSVOL and NETLOGON folders with the following command: 
 ```powershell

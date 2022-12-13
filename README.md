@@ -48,6 +48,19 @@ C:\> runas /netonly /user:UNSAFE\ruser "mmc /server=unsafe.local"
 
 #4. File > Open > File name: C:\Windows\System32 > dsa (for example) > click
 ```
+```powershell
+Netdom
+# List workstation, server, dc, pdc, fsmo and trust information
+C:\> netdom query fsmo /domain:unsafe.local
+C:\> netdom query workstation /d:unsafe /ud:UNSAFE\luser /pd:S3cP@ss
+C:\> netdom query server /d:unsafe /ud:UNSAFE\luser /pd:S3cP@ss
+C:\> netdom query dc /d:unsafe /ud:UNSAFE\luser /pd:S3cP@ss
+C:\> netdom query pdc /d:unsafe /ud:UNSAFE\luser /pd:S3cP@ss
+C:\> netdom query trust /d:unsafe /ud:UNSAFE\luser /pd:S3cP@ss
+
+# Adding a computer account
+C:\> netdom add /d:unsafe.local machine /ud:UNSAFE\luser /pd:S3cP@ss
+```
 <br/>
 
 **PowerView**
@@ -193,4 +206,5 @@ Disable-MachineAccount -MachineAccount maq
 
 #### Reference
 https://bloodhound.readthedocs.io/en/latest/data-collection/sharphound.html \
-https://bitvijays.github.io/LFF-IPS-P3-Exploitation.html
+https://bitvijays.github.io/LFF-IPS-P3-Exploitation.html \
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc772217(v=ws.11)

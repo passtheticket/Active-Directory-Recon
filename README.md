@@ -203,8 +203,16 @@ Set-MachineAccountAttribute -MachineAccount maq -Attribute description -Value te
 # Disable the machine account
 Disable-MachineAccount -MachineAccount maq
 ```
+<br/>
+
+**LDAPMonitor**
+```powershell
+# For monitoring creation, deletion and changes to LDAP objects
+C:\> SharpLDAPmonitor.exe /dcip:192.168.1.200 /user:UNSAFE\luser /pass:S3cP@ss
+```
 
 #### Reference
 https://bloodhound.readthedocs.io/en/latest/data-collection/sharphound.html \
 https://bitvijays.github.io/LFF-IPS-P3-Exploitation.html \
-https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc772217(v=ws.11)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc772217(v=ws.11) \
+https://github.com/p0dalirius/LDAPmonitor

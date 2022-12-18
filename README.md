@@ -109,6 +109,7 @@ C:\> SharpHound.exe -d unsafe.local --CollectionMethods Session --Loop --Loopdur
 #Method 2
 C:\> SharpHound.exe -d unsafe.local -c All --ldapusername ruser --ldappassword Password
 C:\> SharpHound.exe -d unsafe.local --CollectionMethods Session --Loop --ldapusername ruser --ldappassword Password
+C:\> SharpHound.exe -d unsafe.local --CollectionMethods LoggedOn --ldapusername ruser --ldappassword Password
 ```
 <br/>
 

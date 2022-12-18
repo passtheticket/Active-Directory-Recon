@@ -49,6 +49,15 @@ C:\> runas /netonly /user:UNSAFE\ruser "mmc /server=unsafe.local"
 #4. File > Open > File name: C:\Windows\System32 > dsa (for example) > click
 ```
 ```powershell
+Powershell ActiveDirectory Module
+#1. Spawn a Powershell as a user in that domain using runas and its /netonly flag and enter the password.
+C:\> runas /netonly /user:UNSAFE\ruser powershell.exe
+
+#2. Running cmdlets
+C:\> Get-ADDomain -Server DC1.unsafe.local
+C:\> Get-ADUser -Identity luser -Server DC_IP_address -Properties *
+```
+```powershell
 Netdom
 # List workstation, server, dc, pdc, fsmo and trust information
 C:\> netdom query fsmo /domain:unsafe.local
@@ -209,11 +218,12 @@ Disable-MachineAccount -MachineAccount maq
 **LDAPMonitor**
 ```powershell
 # For monitoring creation, deletion and changes to LDAP objects
-C:\> SharpLDAPmonitor.exe /dcip:192.168.1.200 /user:UNSAFE\luser /pass:S3cP@ss
+C:\> SharpLDAPmonitor.exe /dcip:DC_IP_address /user:UNSAFE\luser /pass:S3cP@ss
 ```
 
 #### Reference
 https://bloodhound.readthedocs.io/en/latest/data-collection/sharphound.html \
 https://bitvijays.github.io/LFF-IPS-P3-Exploitation.html \
 https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc772217(v=ws.11) \
-https://github.com/p0dalirius/LDAPmonitor
+https://github.com/p0dalirius/LDAPmonitor \
+https://learn.microsoft.com/en-us/powershell/module/activedirectory/?view=windowsserver2022-ps

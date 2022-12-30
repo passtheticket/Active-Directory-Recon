@@ -242,4 +242,7 @@ https://bitvijays.github.io/LFF-IPS-P3-Exploitation.html \
 https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc772217(v=ws.11) \
 https://github.com/p0dalirius/LDAPmonitor \
 https://learn.microsoft.com/en-us/powershell/module/activedirectory/?view=windowsserver2022-ps \
-https://github.com/61106960/adPEAS 
+https://github.com/61106960/adPEAS \
+https://github.com/Kevin-Robertson/Powermad \
+https://www.pingcastle.com/ \
+https://www.purple-knight.com/

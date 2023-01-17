@@ -230,6 +230,28 @@ Disable-MachineAccount -MachineAccount maq
 ```
 <br/>
 
+**LAPSToolkit**
+```powershell
+#1. Spawn a Powershell as a user in that domain using runas and its /netonly flag and enter the password.
+C:\> runas /netonly /user:UNSAFE\ruser powershell.exe
+
+#2. Set Execution policy as Bypass
+Set-ExecutionPolicy Bypass -Scope CurrentUser
+
+#3. Import Module
+Import-Module .\LAPSToolkit.ps1
+
+#4. Displays all computers with LAPS enabled
+Get-LAPSComputers
+
+#5. Searches through all OUs to see which AD groups can read the ms-Mcs-AdmPwd attribute.
+Find-LAPSDelegatedGroups
+
+#6. Checks the rights on each computer with LAPS enabled for any groups with read access and users with AllExtendedRights.
+Find-AdmPwdExtendedRights
+```
+<br/>
+
 **LDAPMonitor**
 ```powershell
 # For monitoring creation, deletion and changes to LDAP objects
@@ -244,5 +266,6 @@ https://github.com/p0dalirius/LDAPmonitor \
 https://learn.microsoft.com/en-us/powershell/module/activedirectory/?view=windowsserver2022-ps \
 https://github.com/61106960/adPEAS \
 https://github.com/Kevin-Robertson/Powermad \
+https://github.com/leoloobeek/LAPSToolkit \
 https://www.pingcastle.com/ \
 https://www.purple-knight.com/

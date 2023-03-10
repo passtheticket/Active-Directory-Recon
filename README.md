@@ -184,6 +184,9 @@ runas /netonly /user:UNSAFE\ruser powershell.exe
 #Find Primary DC:
 [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain().pdcroleowner
 
+#Find Schema Master:
+[System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain().Forest.SchemaRoleOwner
+
 #Get trusts for forest:
 $forest = "unsafe.local"
 ([System.DirectoryServices.ActiveDirectory.Forest]::GetForest((New-Object System.DirectoryServices.ActiveDirectory.DirectoryContext('Forest', $forest)))).GetAllTrustRelationships()

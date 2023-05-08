@@ -76,6 +76,17 @@ C:\> netdom query trust /d:unsafe /ud:UNSAFE\luser /pd:S3cP@ss
 # Adding a computer account
 C:\> netdom add /d:unsafe.local machine /ud:UNSAFE\luser /pd:S3cP@ss
 ```
+```powershell
+Dsquery
+# List workstation, dc, ou, site information and query with LDAP filter
+C:\> dsquery user -u unsafe\luser -p P@ssw0rd -d unsafe.local
+C:\> dsquery computer -u unsafe\luser -p P@ssw0rd -d unsafe.local
+C:\> dsquery ou -u unsafe\luser -p P@ssw0rd -d unsafe.local
+C:\> dsquery site -u unsafe\luser -p P@ssw0rd -d unsafe.local
+C:\> dsquery server -u unsafe\luser -p P@ssw0rd -d unsafe.local
+C:\> dsquery * "CN=Users,DC=INLANEFREIGHT,DC=LOCAL" -u unsafe\luser -p P@ssw0rd -d unsafe.local
+C:\> dsquery * -filter "(&(objectCategory=person)(objectClass=user)(userAccountControl:1.2.840.113556.1.4.803:=32))" -attr distinguishedName userAccountControl -u unsafe\luser -p P@ssw0rd -d unsafe.local
+```
 <br/>
 
 **PowerView**

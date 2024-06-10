@@ -271,6 +271,17 @@ Find-AdmPwdExtendedRights
 # For monitoring creation, deletion and changes to LDAP objects
 C:\> SharpLDAPmonitor.exe /dcip:DC_IP_address /user:UNSAFE\luser /pass:S3cP@ss
 ```
+<br/>
+
+**Snaffler**
+```powershell
+#1. Spawn a CMD as a user in that domain using runas and its /netonly flag and enter the password.
+C:\> runas /netonly /user:UNSAFE\ruser cmd.exe
+
+#2. Fire up Snaffler
+C:\> Snaffler.exe -s -d unsafe.local -c [DomainController-IP] -o snaffler.log
+```
+<br/>
 
 #### Reference
 https://bloodhound.readthedocs.io/en/latest/data-collection/sharphound.html \
@@ -282,4 +293,5 @@ https://github.com/61106960/adPEAS \
 https://github.com/Kevin-Robertson/Powermad \
 https://github.com/leoloobeek/LAPSToolkit \
 https://www.pingcastle.com/ \
-https://www.purple-knight.com/
+https://www.purple-knight.com/ \
+https://github.com/SnaffCon/Snaffler

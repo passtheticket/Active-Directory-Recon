@@ -128,6 +128,13 @@ Invoke-adPEAS -Domain unsafe.local -Username 'unsafe\luser' -Password 'S3cP@ss' 
 ```
 <br/>
 
+**ADRecon**
+```powershell
+# To run ADRecon on a non-member host using LDAP.
+PS C:\>.\ADRecon.ps1 -Protocol LDAP -DomainController <IP or FQDN> -Credential <domain\username>
+```
+<br/>
+
 **SharpHound**
 ```powershell
 #Method 1
@@ -145,6 +152,9 @@ C:\> SharpHound.exe -d unsafe.local --CollectionMethods Session --Loop --Loopdur
 C:\> SharpHound.exe -d unsafe.local -c All --ldapusername ruser --ldappassword Password
 C:\> SharpHound.exe -d unsafe.local --CollectionMethods Session --Loop --ldapusername ruser --ldappassword Password
 C:\> SharpHound.exe -d unsafe.local --CollectionMethods LoggedOn --ldapusername ruser --ldappassword Password
+
+#Note: After uploading the data to Bloodhound, AD-miner can be executed.
+AD-miner -c -cf Report -u neo4j -p mypassword
 ```
 <br/>
 
@@ -294,4 +304,6 @@ https://github.com/Kevin-Robertson/Powermad \
 https://github.com/leoloobeek/LAPSToolkit \
 https://www.pingcastle.com/ \
 https://www.purple-knight.com/ \
-https://github.com/SnaffCon/Snaffler
+https://github.com/SnaffCon/Snaffler \
+https://github.com/sense-of-security/ADRecon \
+https://github.com/Mazars-Tech/AD_Miner 
